@@ -1,0 +1,494 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>隅见 Y1 · 完整长海报</title>
+<style>
+:root{color-scheme:light;--paper:#f4f2eb;--ink:#253c35;--green:#527664;--line:#a3b1a2}*{box-sizing:border-box}
+body{margin:0;background:#e9e8e2;font-family:"PingFang SC","Microsoft YaHei",sans-serif;color:var(--ink)}
+main{max-width:1200px;margin:0 auto;padding:0 18px 40px}
+button,input{cursor:pointer}button:focus-visible,input:focus-visible{outline:2px solid var(--green);outline-offset:3px}
+/* 三段各自的控件与状态隐藏，由顶部统一驱动 */
+#brand-banner .controls,#robot-triptych .controls,#tech-triptych .controls,#brand-banner .status,#robot-triptych .status,#tech-triptych .status{display:none!important}
+/* 三段无缝拼成一张长海报 */
+.poster{margin-top:18px;border-radius:12px;overflow:hidden;box-shadow:0 10px 36px #253c3514}
+.poster .art{border-radius:0!important;box-shadow:none!important}
+.poster .seam{height:1px;background:var(--line);opacity:.35}
+.bar{position:sticky;top:0;z-index:5;background:#e9e8e2ee;backdrop-filter:blur(6px);padding:14px 0 10px;border-bottom:1px solid #a3b1a255}
+.head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:10px}
+.head h1{font-size:19px;font-weight:500;margin:0;letter-spacing:1px}.head span{font-size:12px;letter-spacing:2px;color:var(--green)}
+.ctl{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.ctl button,.chapters button{font:inherit;font-size:14px;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:20px;padding:7px 15px}
+.ctl button[aria-pressed=true]{background:var(--ink);color:var(--paper)}
+.ctl input{flex:1;min-width:120px;accent-color:var(--green)}
+.clock{font-variant-numeric:tabular-nums;font-size:13px;color:var(--green);min-width:56px;text-align:right}
+.chapters{display:flex;gap:6px;margin-top:10px;flex-wrap:wrap}.chapters button{font-size:12px;padding:5px 12px}
+.live{font-size:12px;color:var(--green);margin-top:8px;min-height:18px;display:flex;gap:18px;flex-wrap:wrap}.live b{font-weight:500;color:var(--ink);margin-right:6px}
+.note{font-size:12px;color:var(--green);margin-top:18px;line-height:1.8}
+@media(max-width:560px){main{padding:0 12px 32px}.ctl button{padding:7px 11px}.head h1{font-size:16px}.poster .seam{display:none}}
+</style>
+</head><body><main>
+<div class="bar">
+<div class="head"><h1>隅见 Y1 · 品牌 / 产品 / 技术</h1><span>BRAND × HOME × TECH</span></div>
+<div class="ctl"><button type="button" id="lp-play">播放</button><button type="button" id="lp-still" aria-pressed="true">定格</button><button type="button" id="lp-restart">从头播放</button><input id="lp-time" type="range" min="0" max="44" step="0.05" value="0" aria-label="三段共用动画进度"><span class="clock" id="lp-clock">定格</span></div>
+<div class="chapters" role="group" aria-label="跳到章节"><button type="button" data-t="6">01 越过日常</button><button type="button" data-t="23">02 抵达角落</button><button type="button" data-t="41">03 洁净如初</button></div>
+<div class="live" aria-live="polite"><span><b>俯视</b><i id="lp-s1">—</i></span><span><b>平视</b><i id="lp-s2">—</i></span></div>
+</div>
+<div class="poster" data-synced>
+
+<div id="brand-banner">
+<style>
+#brand-banner{--paper:light-dark(#f4f2eb,#222824);--ink:light-dark(#253c35,#e1e9df);--soft:light-dark(#dadfd4,#3c4940);--faint:light-dark(#e8e9e0,#303a33);--green:light-dark(#527664,#a5c9a8);--body:light-dark(#fffefa,#dce2da);--line:light-dark(#a3b1a2,#687c6d);font-family:"PingFang SC","Microsoft YaHei",sans-serif;color:var(--ink)}
+#brand-banner .art{border-radius:12px;box-shadow:0 8px 28px #253c350a;background:var(--paper);width:100%;display:block}#brand-banner .controls{display:flex;gap:8px;flex-wrap:wrap;align-items:center;padding:14px 0}#brand-banner button{font:inherit;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:20px;padding:8px 16px}#brand-banner button[aria-pressed=true]{background:var(--ink);color:var(--paper)}#brand-banner .status{color:var(--green);font-size:13px;min-height:24px;margin:4px 0 8px}#brand-banner input{flex:1;min-width:100px;accent-color:var(--green)}#brand-banner svg text{fill:var(--ink)}#brand-banner svg .minor{fill:var(--green)}#brand-banner .toc{cursor:pointer}#brand-banner .toc:focus-visible{outline:none}#brand-banner .toc:focus-visible rect{stroke:var(--green)}
+@media(max-width:560px){#brand-banner .controls{gap:6px}#brand-banner button{padding:8px 11px}}
+</style>
+<div class="controls"><button type="button" id="bb-play">播放</button><button type="button" id="bb-still" aria-pressed="true">定格</button><button type="button" id="bb-restart">从头播放</button><input id="bb-time" type="range" min="0" max="44" step="0.05" value="0" aria-label="动画进度"></div>
+<div class="status" id="bb-status" aria-live="polite">定格 · 隅见 Y1</div>
+<svg class="art" id="bb-art" viewBox="0 0 1080 400" role="img" aria-label="品牌横幅：左上为虚构品牌隅见 Y1 的名称、标语、简介和三段目录；右侧为贴地仰视的巨大扫地机器人（已缩为长横幅），右缘略出画，底部吸口吸入细流线和灰尘颗粒">
+<defs>
+<linearGradient id="bb-cyl" x1="500" x2="1140" gradientUnits="userSpaceOnUse"><stop stop-color="var(--soft)"/><stop offset=".12" stop-color="var(--body)"/><stop offset=".42" stop-color="var(--body)"/><stop offset=".8" stop-color="var(--faint)"/><stop offset="1" stop-color="var(--soft)"/></linearGradient>
+<linearGradient id="bb-turret" x1="0" x2="1"><stop stop-color="var(--soft)"/><stop offset=".3" stop-color="var(--body)"/><stop offset=".7" stop-color="var(--faint)"/><stop offset="1" stop-color="var(--soft)"/></linearGradient>
+<linearGradient id="bb-shade" x1="0" y1="0" x2="0" y2="1"><stop offset=".55" stop-color="var(--ink)" stop-opacity="0"/><stop offset="1" stop-color="var(--ink)" stop-opacity=".1"/></linearGradient>
+<linearGradient id="bb-win" x1="0" y1="0" x2="0" y2="1"><stop stop-color="var(--ink)" stop-opacity=".9"/><stop offset="1" stop-color="var(--ink)" stop-opacity=".7"/></linearGradient>
+<linearGradient id="bb-fade" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--paper)" stop-opacity="0"/><stop offset="1" stop-color="var(--paper)" stop-opacity=".0"/></linearGradient>
+</defs>
+
+<!-- 地面与视平线（沿用技术组的视平线语言：机位从 18 cm 再压到 2 cm） -->
+<g transform="translate(0 -190)"><g id="bb-floor"></g>
+<line x1="0" y1="532" x2="1080" y2="532" stroke="var(--line)" stroke-dasharray="2 6" opacity=".7"/></g>
+
+
+<!-- 文字区 -->
+<text x="64" y="50" font-size="12" letter-spacing="3">BRAND / YUJIAN Y1</text>
+<text x="62" y="144" font-size="62" font-weight="600" letter-spacing="5">隅见</text>
+<circle cx="214" cy="138" r="5" fill="var(--green)"/>
+<text x="64" y="314" font-size="20" font-weight="500" letter-spacing="3">每个角落，都被看见。</text>
+<g id="bb-toc"></g>
+
+<!-- 吸入气流（在机身之前绘制，汇入底部吸口） -->
+<g transform="translate(0 -190)"><g id="bb-shadow"><ellipse cx="820" cy="539" rx="372" ry="10" fill="var(--ink)" opacity=".1"/></g>
+<g id="bb-under"></g>
+<g id="bb-flow"></g>
+<g id="bb-body"></g>
+<g id="bb-front"></g></g>
+
+
+<text x="820" y="392" text-anchor="middle" font-size="10" letter-spacing="1" class="minor" style="paint-order:stroke;stroke:var(--paper);stroke-width:5px;stroke-linejoin:round">视平线 · 机位离地 2 cm*</text>
+</svg>
+<script>
+(()=>{const root=document.getElementById('brand-banner'),q=s=>root.querySelector(s),art=q('#bb-art');let t=0,playing=false,still=true,last=0;
+const clamp=v=>Math.max(0,Math.min(1,v)),F=n=>+n.toFixed(2);
+/* 机身几何：贴地仰视。顶沿与底沿都在视平线上方，因此看到的是两条向上拱的近侧弧，底面露出一条窄边 */
+const CX=820,RR=320,YT=318,RYT=30,YB=498,RYB=16,HZ=532;
+const ryAt=y=>RYB+(RYT-RYB)*(YB-y)/(YB-YT);
+const nearY=(x,yc,ry)=>yc-ry*Math.sqrt(Math.max(0,1-((x-CX)/RR)**2));
+const farY=(x,yc,ry)=>yc+ry*Math.sqrt(Math.max(0,1-((x-CX)/RR)**2));
+const arc=(x0,x1,y,far)=>{let p=[];for(let x=x0;x<=x1+.1;x+=8){let r=ryAt(y);p.push(F(Math.min(x,x1))+' '+F(far?farY(Math.min(x,x1),y,r):nearY(Math.min(x,x1),y,r)))}return p};
+/* 地面线 */
+(function(){let g='';[537,543,551,562,577,597].forEach((y,i)=>g+=`<line x1="0" x2="1080" y1="${y}" y2="${y}" stroke="var(--soft)" stroke-width="1.4" opacity="${F(.95-i*.08)}"/>`);for(let k=-6;k<=6;k++)g+=`<line x1="${820+k*20}" y1="${HZ}" x2="${820+k*260}" y2="600" stroke="var(--soft)" opacity=".55"/>`;q('#bb-floor').innerHTML=g})();
+/* 底面（窄边）与固定部件 */
+(function(){let u=`<path d="M500 ${YB}A${RR} ${RYB} 0 0 0 1140 ${YB}A${RR} ${RYB} 0 0 0 500 ${YB}Z" fill="var(--ink)" opacity=".78"/>`;
+u+=`<rect x="676" y="500" width="38" height="36" rx="15" fill="var(--ink)" opacity=".85"/><rect x="942" y="500" width="38" height="36" rx="15" fill="var(--ink)" opacity=".85"/>`;
+u+=`<circle cx="548" cy="501" r="4" fill="var(--line)"/><circle cx="1086" cy="503" r="4" fill="var(--line)"/>`;u+=`<rect x="900" y="503" width="200" height="9" rx="4" fill="var(--green)" opacity=".55"/>`;
+u+=`<rect x="742" y="502" width="138" height="11" rx="5.5" fill="var(--ink)"/><g id="bb-roller"></g>`;
+q('#bb-under').innerHTML=u;
+/* 机身侧面：上沿为顶沿近侧弧，下沿为底沿近侧弧 */
+let top=arc(500,1140,YT),bot=arc(500,1140,YB).reverse();
+let b=`<path d="M738 ${YT-60}A82 9 0 0 1 902 ${YT-60}V${YT}H738Z" fill="url(#bb-turret)" stroke="var(--line)"/><path d="M738 ${YT-60}A82 9 0 0 1 902 ${YT-60}" fill="none" stroke="var(--body)" stroke-width="2"/>`;
+b+=`<path d="M739 ${YT-50}A81 8.8 0 0 1 901 ${YT-50}V${YT-40}A81 8.8 0 0 0 739 ${YT-40}Z" fill="var(--ink)" opacity=".78"/><path d="M748 ${YT-46}A72 7.6 0 0 1 892 ${YT-46}" fill="none" stroke="var(--body)" opacity=".3"/><circle id="bb-tled" cx="852" cy="${YT-36}" r="2.6" fill="var(--green)"/>`;
+b+=`<path d="M${top.join('L')}L${bot.join('L')}Z" fill="url(#bb-cyl)" stroke="var(--line)"/><path d="M${top.join('L')}L${bot.join('L')}Z" fill="url(#bb-shade)"/>`;
+b+=`<path d="M${arc(504,1136,YT+7).join('L')}" fill="none" stroke="var(--body)" stroke-width="3" opacity=".9"/>`;
+b+=`<path d="M${arc(500,1140,356).join('L')}" fill="none" stroke="var(--line)" opacity=".8"/><path d="M${arc(500,1140,468).join('L')}" fill="none" stroke="var(--line)" opacity=".6"/>`;
+b+=`<path d="M532 356V468M884 356V468" stroke="var(--line)" opacity=".5"/>`;let bt=arc(532,884,356),bb_=arc(532,884,468).reverse();b+=`<path d="M${bt.join('L')}L${bb_.join('L')}Z" fill="var(--faint)" opacity=".45"/>`;for(let k=0;k<4;k++){let x=1036+k*14;b+=`<path d="M${x} ${F(nearY(x,392,ryAt(392)))}V${F(nearY(x,428,ryAt(428)))}" stroke="var(--line)" stroke-width="3" stroke-linecap="round" opacity=".55"/>`}b+=`<path d="M${arc(560,880,474).join('L')}" fill="none" stroke="var(--body)" stroke-width="2" opacity=".7"/>`;
+let wt=arc(572,740,380),wb=arc(572,740,414).reverse();b+=`<path d="M${wt.join('L')}L${wb.join('L')}Z" fill="url(#bb-win)"/><path d="M600 ${F(nearY(600,412,ryAt(412)))}L640 ${F(nearY(640,382,ryAt(382)))}H656L616 ${F(nearY(616,412,ryAt(412)))}Z" fill="var(--body)" opacity=".12"/><path d="M${arc(580,732,385).join('L')}" fill="none" stroke="var(--body)" opacity=".25"/>`;
+b+=`<circle cx="622" cy="${F(nearY(622,397,ryAt(397)))}" r="5" fill="var(--green)" opacity=".55"/><circle cx="690" cy="${F(nearY(690,397,ryAt(397)))}" r="5" fill="var(--green)" opacity=".55"/>`;
+b+=`<path id="bb-led" d="M${arc(600,712,338).join('L')}" fill="none" stroke="var(--green)" stroke-width="3" stroke-linecap="round"/>`;
+b+=`<text x="912" y="${F(nearY(950,445,ryAt(445))+4)}" font-size="13" letter-spacing="5" style="fill:var(--line)">YUJIAN</text><text x="994" y="${F(nearY(1030,445,ryAt(445))+4)}" font-size="11" letter-spacing="2" style="fill:var(--green)">Y1</text>`;
+q('#bb-body').innerHTML=b})();
+/* 吸入流线：从画面下缘与前方地面汇向吸口 */
+const N=16,lines=[];for(let i=0;i<N;i++){let f=i/(N-1),sx=i<3?380+i*40:470+(f)*600,sy=i<3?548+i*8:600,ex=752+f*118,ey=508,c1x=sx+(ex-sx)*.18,c1y=sy-(i<3?4:22),c2x=ex+(sx-ex)*.5,c2y=ey+20;lines.push([sx,sy,c1x,c1y,c2x,c2y,ex,ey])}
+const bz=(L,u)=>{let m=1-u;return{x:m*m*m*L[0]+3*m*m*u*L[2]+3*m*u*u*L[4]+u*u*u*L[6],y:m*m*m*L[1]+3*m*m*u*L[3]+3*m*u*u*L[5]+u*u*u*L[7]}};
+/* 吸力强度：与两组时间轴同步（上毯加力、墙角、集尘时增强） */
+function power(v){let k=.42;if(v>=4&&v<9.6)k=.42+.58*clamp((v-4)/.6)*(1-clamp((v-9)/.6));if(v>=21&&v<25.5)k=Math.max(k,.42+.48*clamp((v-21)/.6)*(1-clamp((v-24.8)/.7)));if(v>=40&&v<42.4)k=Math.max(k,.42+.4*clamp((v-40)/.4)*(1-clamp((v-42)/.4)));return k}
+const chapters=[[6,'01','ADAPT','越过日常','地毯抬布 · 识线绕行'],[23,'02','REACH','抵达角落','贴墙沿边 · 边刷伸角'],[41,'03','RETURN','洁净如初','自动回站 · 集尘洗烘']];
+function render(){const k=still?.75:power(t),cur=still?-1:(t<16.5?0:t<31?1:2);
+/* 流线与颗粒 */
+let g='';lines.forEach((L,i)=>{const off=still?0:-(t*60+i*13);g+=`<path d="M${L[0]} ${L[1]}C${F(L[2])} ${F(L[3])} ${F(L[4])} ${F(L[5])} ${F(L[6])} ${L[7]}" fill="none" stroke="var(--green)" stroke-width="${F(.8+k*.9)}" stroke-dasharray="36 20" stroke-dashoffset="${F(off)}" stroke-linecap="round" opacity="${F(.18+k*.5)}"/>`;
+for(let j=0;j<2;j++){let u=still?((i*.37+j*.5)%1):((t*(.18+k*.32)+i*.37+j*.5)%1),p=bz(L,u),sz=(1-u)*2.6+.7;g+=i%3==0?`<rect x="${F(p.x-sz)}" y="${F(p.y-sz*.6)}" width="${F(sz*2)}" height="${F(sz*1.2)}" rx=".6" transform="rotate(${F((t*90+i*40)%360)} ${F(p.x)} ${F(p.y)})" fill="var(--ink)" opacity="${F((.35+k*.4)*(1-u*.4))}"/>`:`<circle cx="${F(p.x)}" cy="${F(p.y)}" r="${F(sz)}" fill="${j?'var(--ink)':'var(--green)'}" opacity="${F((.3+k*.45)*(1-u*.4))}"/>`}});
+q('#bb-flow').innerHTML=g;
+/* 滚刷转动 */
+let r='',ph=still?0:(t*(30+40*k))%14;for(let x=746+ph;x<876;x+=14)r+=`<path d="M${F(x)} 504L${F(x+7)} 511" stroke="var(--green)" stroke-width="1.6" opacity=".8"/>`;q('#bb-roller').innerHTML=r;
+/* 前侧边刷（近乎侧视的压扁转子） */
+let br=`<ellipse cx="596" cy="514" rx="66" ry="9" fill="none" stroke="var(--green)" stroke-dasharray="2 4" opacity=".35"/>`,ba=still?.3:t*5;for(let a=0;a<3;a++){let an=ba+a*2.094;br+=`<line x1="596" y1="514" x2="${F(596+Math.cos(an)*66)}" y2="${F(514+Math.sin(an)*9)}" stroke="var(--ink)" stroke-width="2.4" stroke-linecap="round" opacity=".75"/>`}br+=`<circle cx="596" cy="514" r="6" fill="var(--soft)" stroke="var(--line)"/>`;q('#bb-front').innerHTML=br;
+/* 指示灯呼吸 */
+const pulse=still?1:.55+.45*Math.sin(t*2.4)**2;q('#bb-led').style.opacity=F(.45+.55*pulse*k);q('#bb-tled').style.opacity=F(.5+.5*pulse);
+/* 目录：对应下方两组的三个章节 */
+let c='';chapters.forEach(([tt,n,en,cn,sub],i)=>{const y=196+i*30,on=cur===i,op=still||on?1:.42;c+=`<g class="toc" data-t="${tt}" tabindex="0" role="button" aria-label="跳到 ${n} ${cn}" opacity="${op}"><rect x="58" y="${y-17}" width="282" height="26" rx="5" fill="${on?'var(--faint)':'transparent'}" stroke="none"/><path d="M64 ${y+9}H336" stroke="var(--line)" opacity=".45"/><text x="68" y="${y}" font-size="10" letter-spacing="2" class="minor">${n}</text><text x="92" y="${y}" font-size="10" letter-spacing="2.5">${en}</text><text x="158" y="${y}" font-size="13" font-weight="500">${cn}</text><text x="220" y="${y}" font-size="10" class="minor">${sub}</text>${on?`<circle cx="330" cy="${y-4}" r="3" fill="var(--green)"/>`:''}</g>`});q('#bb-toc').innerHTML=c;
+q('#bb-time').value=t;q('#bb-play').textContent=playing?'暂停':'播放';q('#bb-still').setAttribute('aria-pressed',still);let s=still?'定格 · 隅见 Y1':['吸力随地面调整 · 01 越过日常','吸力随地面调整 · 02 抵达角落','吸力随地面调整 · 03 洁净如初'][cur]+(k>.7?' · 增强':'');if(q('#bb-status').textContent!==s)q('#bb-status').textContent=s}
+/* 目录点击：单独使用时自己跳转；在长页面中由外层统一驱动 */
+function jump(v){root.dispatchEvent(new CustomEvent('bb-jump',{detail:v,bubbles:true}));if(!root.closest('[data-synced]')){t=v;still=false;playing=false;render()}}
+q('#bb-toc').addEventListener('click',e=>{const g=e.target.closest('.toc');if(g)jump(+g.dataset.t)});q('#bb-toc').addEventListener('keydown',e=>{const g=e.target.closest('.toc');if(g&&(e.key==='Enter'||e.key===' ')){e.preventDefault();jump(+g.dataset.t)}});
+q('#bb-play').onclick=()=>{still=false;if(t>=44)t=0;playing=!playing;last=performance.now();render()};q('#bb-still').onclick=()=>{still=true;playing=false;render()};q('#bb-restart').onclick=()=>{t=0;still=false;playing=true;last=performance.now();render()};q('#bb-time').oninput=e=>{t=+e.target.value;still=false;playing=false;render()};document.addEventListener('visibilitychange',()=>{last=performance.now()});
+/* 定格时流线也保持缓慢流动，让品牌图不显得静止 */
+function tick(now){if(playing){t=Math.min(44,t+Math.min(.1,(now-last)/1000));if(t>=44)playing=false;render()}last=now;requestAnimationFrame(tick)}render();requestAnimationFrame(tick);
+})();
+</script>
+</div>
+
+<div class="seam"></div>
+
+<div id="robot-triptych">
+<style>
+#robot-triptych{--paper:light-dark(#f4f2eb,#222824);--ink:light-dark(#253c35,#e1e9df);--soft:light-dark(#dadfd4,#3c4940);--faint:light-dark(#e8e9e0,#303a33);--green:light-dark(#527664,#a5c9a8);--body:light-dark(#fffefa,#dce2da);--line:light-dark(#a3b1a2,#687c6d);font-family:"PingFang SC","Microsoft YaHei",sans-serif;color:var(--ink)}
+#robot-triptych .art{border-radius:12px;box-shadow:0 8px 28px #253c350a;background:var(--paper);width:100%;display:block}#robot-triptych .controls{display:flex;gap:8px;flex-wrap:wrap;align-items:center;padding:14px 0}#robot-triptych button{font:inherit;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:20px;padding:8px 16px}#robot-triptych button[aria-pressed=true]{background:var(--ink);color:var(--paper)}#robot-triptych .status{color:var(--green);font-size:13px;min-height:24px;margin:4px 0 8px}#robot-triptych input{flex:1;min-width:100px;accent-color:var(--green)}#robot-triptych svg text{fill:var(--ink)}#robot-triptych svg .minor,#robot-triptych svg .val{fill:var(--green)}#robot-triptych .caption{font-size:17px;letter-spacing:1px}#robot-triptych .lab{font-size:12px}#robot-triptych .val{font-size:11px}#robot-triptych .tiny{font-size:10px;letter-spacing:1px}#robot-triptych .focus{display:none}@media(max-width:560px){#robot-triptych .art{display:none}#robot-triptych .focus{display:block;width:100%;background:var(--paper)}#robot-triptych .controls{gap:6px}#robot-triptych button{padding:8px 11px}}
+</style>
+<div class="controls"><button type="button" id="rt-play">播放</button><button type="button" id="rt-still" aria-pressed="true">三帧定格</button><button type="button" id="rt-restart">从头播放</button><input id="rt-time" type="range" min="0" max="44" step="0.05" value="0" aria-label="动画进度"></div>
+<div class="status" id="rt-status" aria-live="polite">三帧定格 · 地毯抬升 / 墙角伸刷 / 自动回站</div>
+<svg class="art" id="rt-art" viewBox="0 0 1080 720" role="img" aria-label="俯视家居平面上的三幅竖海报：机器人越过地毯时抬起拖布、绕开数据线；沿墙进入墙角并伸出边刷清扫；自动回到基站集尘、洗拖布和充电">
+<defs>
+<clipPath id="rt-p2"><rect x="360" width="360" height="720"/></clipPath>
+<pattern id="rt-rug" width="8" height="8" patternUnits="userSpaceOnUse"><path d="M0 0L8 8M8 0L0 8" stroke="var(--line)" stroke-width=".5" opacity=".35"/></pattern>
+<pattern id="rt-hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><path d="M0 0V6" stroke="var(--line)" stroke-width="1" opacity=".55"/></pattern>
+<pattern id="rt-zone" width="4" height="4" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)"><path d="M0 0V4" stroke="var(--green)" stroke-width="1.4"/></pattern>
+<pattern id="rt-plate" width="6" height="6" patternUnits="userSpaceOnUse"><path d="M0 3H6" stroke="var(--line)" stroke-width=".6" opacity=".5"/></pattern>
+<radialGradient id="rt-shell"><stop stop-color="var(--body)"/><stop offset=".78" stop-color="var(--body)"/><stop offset="1" stop-color="var(--soft)"/></radialGradient>
+<linearGradient id="rt-fadeL" x1="0" x2="1"><stop stop-color="var(--paper)"/><stop offset="1" stop-color="var(--paper)" stop-opacity="0"/></linearGradient>
+<filter id="rt-shadow" x="-50%" y="-50%" width="200%" height="200%"><feDropShadow dx="0" dy="3" stdDeviation="3.5" flood-opacity=".15"/></filter>
+</defs>
+
+<path d="M360 0V720M720 0V720" stroke="var(--line)" opacity=".24"/>
+<g font-size="12" letter-spacing="3"><text x="28" y="34">HOME / IN MOTION</text><text x="388" y="34">HOME / IN MOTION</text><text x="748" y="34">HOME / IN MOTION</text></g>
+<g font-size="36" font-weight="500"><text x="28" y="91">从容，越过日常。</text><text x="388" y="91">细致，抵达角落。</text><text x="748" y="91">归位，洁净如初。</text></g>
+<g font-size="15" class="minor"><text x="30" y="124">01   地毯适应 · 智能避障</text><text x="390" y="124">02   墙角识别 · 边刷伸缩</text><text x="750" y="124">03   自动回站 · 清洁补能</text></g>
+
+<!-- 地面：俯视平面网格 -->
+<g id="rt-floor"></g>
+
+<!-- 第一幅：地毯 + 数据线 -->
+<g id="rt-carpet"><rect x="128" y="548" width="172" height="104" rx="4" fill="var(--soft)" opacity=".8"/><rect x="128" y="548" width="172" height="104" rx="4" fill="url(#rt-rug)"/><rect x="136" y="556" width="156" height="88" rx="2" fill="none" stroke="var(--line)" opacity=".4"/><path d="M128 554v92M300 554v92" stroke="var(--line)" stroke-width="5" stroke-dasharray="1 3" opacity=".5"/></g>
+<g id="rt-cable" fill="none" stroke="var(--green)" stroke-width="3" stroke-linecap="round"><path d="M252 402C262 392 274 412 286 400S300 390 306 396"/><rect x="242" y="398" width="10" height="7" rx="2" fill="var(--green)" stroke="none"/><g transform="translate(306 396) rotate(-20)"><rect x="0" y="-4.5" width="12" height="9" rx="2.5" fill="var(--green)" stroke="none"/><rect x="11" y="-3" width="8" height="6" rx="2" fill="var(--body)" stroke="var(--ink)" stroke-width=".8"/></g></g>
+
+<!-- 第二幅：墙角（与技术组详图 A 同一画法） -->
+<g clip-path="url(#rt-p2)">
+<rect x="380" y="196" width="314" height="18" fill="url(#rt-hatch)"/><rect x="676" y="196" width="18" height="226" fill="url(#rt-hatch)"/>
+<path d="M380 214H676V422" fill="none" stroke="var(--ink)" stroke-width="1.5"/>
+<path d="M694 196V422" stroke="var(--line)"/><path d="M380 196H694" stroke="var(--line)"/>
+<rect x="378" y="190" width="70" height="38" fill="url(#rt-fadeL)"/>
+<path d="M676 422h18" stroke="var(--line)"/>
+</g>
+<g id="rt-zone-g"></g>
+<g id="rt-dust" fill="var(--green)"><circle cx="669" cy="221" r="2.6"/><circle cx="672" cy="227" r="2"/><circle cx="664" cy="219" r="1.8"/><circle cx="670" cy="234" r="1.7"/><circle cx="657" cy="219" r="1.5"/><circle cx="672" cy="240" r="1.4"/><path d="M660 225l3 -1.5 1.5 3 -3 1.5Z M666 240l3 -1 1 3 -3 1Z"/></g>
+
+<!-- 第三幅：基站（俯视） -->
+<g id="rt-base">
+<rect x="914" y="562" width="86" height="76" rx="6" fill="var(--faint)" stroke="var(--line)"/><rect x="920" y="568" width="72" height="64" rx="3" fill="url(#rt-plate)"/>
+<rect x="988" y="546" width="68" height="108" rx="14" fill="url(#rt-shell)" stroke="var(--line)" filter="url(#rt-shadow)"/>
+<rect x="996" y="556" width="24" height="40" rx="6" fill="var(--soft)" stroke="var(--line)"/><rect x="1024" y="556" width="24" height="40" rx="6" fill="var(--soft)" stroke="var(--line)"/>
+<circle cx="1022" cy="624" r="15" fill="var(--faint)" stroke="var(--line)"/><circle cx="1022" cy="624" r="8" fill="var(--body)" stroke="var(--line)"/>
+<rect x="986" y="590" width="4" height="20" rx="1.5" fill="var(--ink)" opacity=".7"/>
+<circle id="rt-led" cx="1046" cy="604" r="3" fill="var(--green)"/>
+<text x="1008" y="580" text-anchor="middle" class="tiny">清</text><text x="1036" y="580" text-anchor="middle" class="tiny">污</text>
+</g>
+<g id="rt-sparkles" fill="var(--body)" stroke="var(--green)" stroke-width="1.2">
+<g transform="translate(792 452)"><path d="M0 -17Q2.5 -2.5 14 0Q2.5 2.5 0 17Q-2.5 2.5 -14 0Q-2.5 -2.5 0 -17Z"/></g>
+<g transform="translate(866 508)"><path d="M0 -11Q2 -2 9 0Q2 2 0 11Q-2 2 -9 0Q-2 -2 0 -11Z"/></g>
+<g transform="translate(748 548)"><path d="M0 -8Q1.5 -1.5 7 0Q1.5 1.5 0 8Q-1.5 1.5 -7 0Q-1.5 -1.5 0 -8Z"/></g>
+</g>
+
+<g id="rt-dynback"></g>
+<g id="rt-robots"></g>
+<g id="rt-dynfront"></g>
+
+<g class="caption"><text id="rt-copy1" x="28" y="214">靠近识别，灵活绕行</text><text id="rt-copy2" x="412" y="472">伸入墙角，扫净收回</text><text id="rt-copy3" x="748" y="214">自动归位，开启自清洁</text></g>
+<g id="rt-labels"></g>
+<g font-size="11" letter-spacing="2" class="minor"><text x="28" y="688">01 / ADAPT</text><text x="388" y="688">02 / REACH</text><text x="748" y="688">03 / RETURN</text><text x="1050" y="688" text-anchor="end">CONCEPT DEMO</text></g>
+</svg>
+<div id="rt-mobile"></div>
+<script>
+(()=>{const root=document.getElementById('robot-triptych'),q=s=>root.querySelector(s),ns='http://www.w3.org/2000/svg',art=q('#rt-art');let t=0,playing=false,still=true,last=0;
+const clamp=v=>Math.max(0,Math.min(1,v)),sm=f=>f*f*(3-2*f),F=n=>+n.toFixed(2),R=28;
+/* 与技术组同一时间轴：相同时刻发生相同事件 */
+const points=[[0,60,600],[2,100,600],[4,100,600],[7,225,600],[8,262,600],[9,270,520],[10.6,268,462],[11.6,268,462],[12.8,205,410],[14,215,330],[16,330,252],[17,420,242],[21,648,242],[25,648,242],[31,648,500],[35,800,590],[37,850,600],[38,850,600],[40,958,600],[44,958,600]];
+function pos(v){v=Math.max(0,Math.min(44,v));let i=points.findIndex(p=>p[0]>=v);if(i<=0)return{x:points[0][1],y:points[0][2]};let a=points[i-1],b=points[i],f=sm((v-a[0])/(b[0]-a[0]));return{x:a[1]+(b[1]-a[1])*f,y:a[2]+(b[2]-a[2])*f};}
+const ang=(a,b)=>Math.atan2(b.y-a.y,b.x-a.x)*180/Math.PI;
+function head(v){let a=pos(v-.08),b=pos(v+.08);if(Math.hypot(b.x-a.x,b.y-a.y)>.3)return ang(a,b);const back=(v>=10.6&&v<=11.6)||(v>=21&&v<=25)||v>=43;if(!back)for(let d=.2;d<5;d+=.2){let c=pos(v+d);if(Math.hypot(c.x-a.x,c.y-a.y)>1)return ang(a,c)}for(let d=.2;d<8;d+=.2){let c=pos(v-d);if(Math.hypot(c.x-a.x,c.y-a.y)>1)return ang(c,a)}return 0}
+const mopLift=v=>v>=2&&v<9.9?clamp((v-2)/1.5)*(1-clamp((v-9)/.9)):0;
+const brushOut=v=>v>=21&&v<26?clamp((v-21)/1.2)*(1-clamp((v-24)/1)):0;
+/* 静态地面网格 */
+(function(){let g='';for(let x=60;x<1080;x+=60)g+=`<line x1="${x}" x2="${x}" y1="150" y2="660" stroke="var(--soft)" opacity=".55"/>`;for(let y=180;y<=660;y+=60)g+=`<line x1="0" x2="1080" y1="${y}" y2="${y}" stroke="var(--soft)" opacity=".55"/>`;q('#rt-floor').innerHTML=g})();
+/* 机器人（俯视，外观与技术组一致：中置激光塔、前窗、绿色指示灯、左前边刷、后置拖布） */
+function robot(v){let p=pos(v),a=head(v),ml=mopLift(v),br=brushOut(v),spin=v*16;
+let o=`<g transform="translate(${F(p.x)} ${F(p.y)})"><g transform="rotate(${F(a)})">`;
+o+=`<path d="M${-R*.55} ${-R*.78}A${R*.95} ${R*.95} 0 0 0 ${-R*.55} ${R*.78}" fill="none" stroke="var(--green)" stroke-width="${F(5*(1-ml))}" stroke-linecap="round" opacity="${F(.5*(1-ml))}"/>`;
+let bx=R*.62,by=-R*.62,ex=br*17,tx=bx+ex*.71,ty=by-ex*.71;
+o+=`<path d="M${F(bx*.7)} ${F(by*.7)}L${F(tx)} ${F(ty)}" stroke="var(--line)" stroke-width="4" stroke-linecap="round"/><g transform="translate(${F(tx)} ${F(ty)}) rotate(${F(spin*12)})" stroke="var(--green)" stroke-width="1.6" opacity="${br>.01?1:.55}"><path d="M-7 0H7M0 -7V7M-5 -5L5 5M-5 5L5 -5"/></g>`;
+o+=`<circle r="${R}" fill="url(#rt-shell)" stroke="var(--line)" filter="url(#rt-shadow)"/><path d="M${F(R*.5)} ${F(-R*.866)}A${R} ${R} 0 0 1 ${F(R*.5)} ${F(R*.866)}" fill="none" stroke="var(--soft)" stroke-width="3"/><circle r="${R-4}" fill="none" stroke="var(--soft)"/>`;
+o+=`<rect x="${R-7}" y="-7" width="4" height="14" rx="2" fill="var(--ink)" opacity=".72"/>`;
+o+=`<circle r="9.5" fill="var(--soft)" stroke="var(--line)"/><circle r="5" fill="var(--body)"/><circle cx="6.5" r="1.8" fill="var(--green)"/>`;
+o+=`<path d="M${-R*.42} ${R*.5}Q${-R*.62} 0 ${-R*.42} ${-R*.5}" fill="none" stroke="var(--line)" opacity=".7"/></g>`;
+if(ml>.05)o+=`<g opacity="${F(ml)}"><circle r="${R+6}" fill="none" stroke="var(--green)" stroke-dasharray="3 4"/></g>`;
+return o+'</g>'}
+const mk=(n,x,y,op)=>op<=0?'':`<g opacity="${F(op)}"><circle cx="${F(x)}" cy="${F(y)}" r="7" fill="var(--green)" stroke="var(--paper)" stroke-width="1.5"/><text x="${F(x)}" y="${F(y+3.5)}" text-anchor="middle" font-size="9.5" style="fill:var(--paper)">${n}</text></g>`;
+const lab=(n,x,y,title,val,op)=>op<=0?'':`<g opacity="${F(op)}"><circle cx="${x+7}" cy="${y-4}" r="7.5" fill="var(--green)"/><text x="${x+7}" y="${y-0.5}" text-anchor="middle" font-size="10" style="fill:var(--paper)">${n}</text><text x="${x+20}" y="${y}" class="lab">${title}</text><text x="${x+20}" y="${y+15}" class="val">${val}</text></g>`;
+const ap=a=>still?1:clamp((t-a)/.6),win=(a,b,fi=.5,fo=.6)=>clamp((t-a)/fi)*(1-clamp((t-b)/fo));
+function render(){let back='',front='',L='';
+/* 已清扫轨迹 */
+if(!still){let pts=[];for(let v=Math.max(0,t-3);v<=t;v+=.1){let p=pos(v);pts.push(F(p.x)+' '+F(p.y))}if(pts.length>1)back+=`<path d="M${pts.join('L')}" fill="none" stroke="var(--green)" stroke-width="${R*2}" stroke-linecap="round" stroke-linejoin="round" opacity=".09"/>`}
+/* ① 地毯识别：毯边高亮 */
+let ce=still?.8:win(1.2,4.6,.4,.6);if(ce>0)back+=`<path d="M128 552V648" stroke="var(--green)" stroke-width="3" stroke-linecap="round" opacity="${F(ce)}"/>`;
+/* ③ 数据线：识别框 + 安全距离 + 绕行虚线 */
+let bx=still?1:clamp((t-10.6)/.4)*(t<17?1:.6);if(bx>0)back+=`<ellipse cx="278" cy="400" rx="46" ry="26" fill="none" stroke="var(--green)" stroke-dasharray="2 4" opacity="${F(bx*.8)}"/><g fill="none" stroke="var(--ink)" stroke-width="1.2" opacity="${F(bx)}"><path d="M236 386V380H244M316 380H324V386M324 412V418H316M244 418H236V412"/></g><text x="280" y="372" text-anchor="middle" class="tiny" opacity="${F(bx)}">数据线</text>`;
+let dp=still?1:win(11,17.5,.6,.8);if(dp>0){let pts=[];for(let v=11.6;v<=17;v+=.2){let p=pos(v);pts.push(F(p.x)+' '+F(p.y))}back+=`<path d="M${pts.join('L')}" fill="none" stroke="var(--green)" stroke-width="1.6" stroke-dasharray="5 4" opacity="${F(dp*.8)}"/>`}
+let sc=still?0:win(9.9,11.9,.4,.4);if(sc>0){let p=pos(t);back+=`<path d="M${F(p.x)} ${F(p.y-R)}L238 404L320 404Z" fill="var(--green)" opacity="${F(.13*sc)}"/>`}
+q('#rt-cable').style.strokeWidth=(!still&&t>=10.6&&t<11.6)?'4.4':'3';
+/* ④ 贴墙 */
+let tof=still?.7:win(17,21.2,.5,.6),pw=pos(still?23:t);if(tof>0&&pw.x>380&&pw.x<700&&pw.y<300){for(let k=0;k<3;k++)front+=`<path d="M${F(pw.x-14+k*9)} ${F(pw.y-R-1)}V215" stroke="var(--green)" stroke-width="1.2" stroke-dasharray="1.5 2" opacity="${F(tof)}"/>`}
+/* ⑤ 识别墙角 */
+let lz=still?.8:win(19.5,22,.4,.5);if(lz>0)front+=`<path d="M676 216V246" stroke="var(--green)" stroke-width="3" stroke-linecap="round" opacity="${F(lz)}"/><path d="M664 214H676V226" fill="none" stroke="var(--ink)" stroke-width="1.4" opacity="${F(lz)}"/>`;
+/* ⑥ 圆形盲区：边刷清扫后消失 */
+let cl=still?.5:clamp((t-22.2)/1.8),zo=still?1:(t<19?0:t<26?1:1-clamp((t-26)/1));q('#rt-zone-g').innerHTML=zo>0?`<path d="M648 214L676 214L676 242A28 28 0 0 0 648 214Z" fill="url(#rt-zone)" opacity="${F(zo*(.85*(1-cl)+.1))}"/>`:'';
+q('#rt-dust').style.opacity=still?'.6':.9*(1-clamp((t-22.2)/1.8));
+/* ⑦ 对准回站 */
+let ir=still?0:win(34,38.6,.6,.6);if(ir>0){for(let k=0;k<3;k++){let ph=still?k/3:((t*1.2+k/3)%1),r=14+ph*70;back+=`<path d="M${F(912-r*.5)} ${F(600-r*.85)}A${F(r)} ${F(r)} 0 0 0 ${F(912-r*.5)} ${F(600+r*.85)}" fill="none" stroke="var(--green)" stroke-width="1.3" opacity="${F(ir*(1-ph))}"/>`}back+=`<path d="M912 600H${still?850:F(Math.min(912,pos(t).x+R))}" stroke="var(--green)" stroke-dasharray="1 4" opacity="${F(ir)}"/>`}
+/* ⑧ 集尘 ⑨ 洗拖布 */
+let fl=still?1:win(40,42.2,.3,.5);if(fl>0)for(let k=0;k<4;k++){let ph=still?k/4:((t*1.1+k/4)%1);front+=`<circle cx="${F(966+ph*52)}" cy="${F(606+Math.sin(ph*6)*3)}" r="1.8" fill="var(--ink)" opacity="${F(fl*.7*(1-ph*.6))}"/>`}
+let wb=still?1:win(42,44.5,.3,.3);if(wb>0)for(let k=0;k<3;k++){let ph=still?k/3:((t*1.2+k/3)%1);front+=`<circle cx="928" cy="600" r="${F(8+ph*18)}" fill="none" stroke="var(--green)" opacity="${F(wb*(1-ph)*.8)}"/>`}
+let ch=still?1:clamp((t-39.6)/.4);q('#rt-led').setAttribute('r',F(3+(still?0:ch*.8*Math.sin(t*4))));q('#rt-led').style.opacity=still?1:.3+.7*ch;
+let bat=still?1:clamp((t-40)/.4);if(bat>0){let pct=still?68:Math.round(23+clamp((t-40)/4)*45);front+=`<g opacity="${F(bat)}"><rect x="990" y="518" width="34" height="13" rx="3" fill="none" stroke="var(--green)" stroke-width="1.2"/><rect x="1024" y="522" width="3" height="5" fill="var(--green)"/><rect x="992.5" y="520.5" width="${F(29*pct/100)}" height="8" rx="1.5" fill="var(--green)"/><text x="1032" y="529" class="tiny minor">${pct}%</text></g>`}
+/* 闪光 */
+q('#rt-sparkles').querySelectorAll('g').forEach((g,i)=>{const f=clamp((t-31-i*1.4)/2.5),pulse=Math.sin(Math.PI*f),path=g.querySelector('path');g.style.opacity=still?.75:clamp((t-31-i*1.4)/.6)*(.55+.4*pulse);path.setAttribute('transform',`scale(${still?1:.75+.4*pulse})`)});
+q('#rt-dynback').innerHTML=back;q('#rt-dynfront').innerHTML=front;
+q('#rt-robots').innerHTML=(still?[6,23,41]:[t]).map(robot).join('');
+/* 标注：编号与技术组一一对应 */
+L+=lab('1',28,262,'识别地毯','毯边前停一下，再上毯',ap(1.2));
+L+=lab('2',28,310,'拖布自动抬起','地毯不被打湿',ap(3));
+L+=lab('3',28,358,'识别数据线','绕开走，不缠不拖',ap(10.4));
+L+=lab('4',412,526,'贴墙沿边','紧贴墙根，一路扫过',ap(17.4));
+L+=lab('5',412,574,'识别直角','到角先减速',ap(19.8));
+L+=lab('6',412,622,'边刷伸入墙角','圆形机身够不到的角也扫到',ap(21.2));
+L+=lab('7',748,262,'自动对准回站','无需人工摆放',ap(34.4));
+L+=lab('8',748,310,'自动集尘','尘盒倒空，不碰灰尘',ap(40.2));
+L+=lab('9',748,358,'洗拖布 · 烘干 · 充电','准备好下一次',ap(42.2));
+L+=mk('1',116,566,ap(1.2))+mk('3',236,374,ap(10.4))+mk('5',688,256,ap(19.8))+mk('7',904,646,ap(34.4))+mk('8',1066,640,ap(40.2))+mk('9',914,560,ap(42.2));
+let p1=pos(still?6:t);if(still||mopLift(t)>.3)L+=mk('2',p1.x-R-12,p1.y+R+2,still?1:clamp((mopLift(t)-.3)/.3)*ap(3));
+if(tof>0&&pw.x>380&&pw.x<700&&pw.y<300)L+=mk('4',pw.x-28,pw.y-R-8,tof*ap(17.4));
+let p6=pos(still?23:t);if(still||brushOut(t)>.3)L+=mk('6',p6.x+4,p6.y+R+12,still?1:clamp((brushOut(t)-.3)/.3)*ap(21.2));
+q('#rt-labels').innerHTML=L;
+[[1,11.6],[2,25],[3,42]].forEach(([i,v])=>q('#rt-copy'+i).style.opacity=still?1:clamp((t-v)/1.4));
+q('#rt-time').value=t;q('#rt-play').textContent=playing?'暂停':'播放';q('#rt-still').setAttribute('aria-pressed',still);let s=still?'三帧定格 · 地毯抬升 / 墙角伸刷 / 自动回站':phase(t);if(q('#rt-status').textContent!==s)q('#rt-status').textContent=s;
+if(root.clientWidth<561)mobile.forEach((m,i)=>{m.innerHTML=art.innerHTML.replace(/id="([^"]+)"/g,(_,id)=>`id="${id}-m${i}"`).replace(/url\(#([^)]*)\)/g,(_,id)=>`url(#${id}-m${i})`);m.style.display=still||i===(t<16.5?0:t<31?1:2)?'block':'none'})}
+function phase(v){if(v<2)return'接近地毯 · 拖布贴地';if(v<4)return'识别毯边 · 停一下，抬起拖布';if(v<9)return'越过地毯 · 拖布保持抬起';if(v<9.9)return'离开地毯 · 拖布放下';if(v<10.6)return'前方有东西 · 减速靠近';if(v<11.6)return'认出是数据线 · 准备绕开';if(v<16)return'绕开数据线 · 继续清扫';if(v<17)return'绕行完成 · 去往墙边';if(v<19.5)return'贴着墙根前进';if(v<21)return'快到墙角 · 减速';if(v<22.2)return'到达墙角 · 边刷伸出';if(v<24)return'边刷扫进墙角';if(v<25)return'墙角扫净 · 边刷收回';if(v<31)return'沿墙返回';if(v<34)return'清扫完成 · 准备回站';if(v<37)return'找到基站方向';if(v<38)return'对准基站入口';if(v<40)return'缓慢入站';if(v<42)return'入站完成 · 自动集尘 · 开始充电';return'洗拖布 · 烘干';}
+let mobile=[];for(let i=0;i<3;i++){let s=document.createElementNS(ns,'svg');s.setAttribute('viewBox',`${i*360} 0 360 720`);s.setAttribute('class','focus');s.setAttribute('role','img');s.setAttribute('aria-label',['地毯适应与绕线','墙角边刷伸缩','自动回站'][i]);q('#rt-mobile').append(s);mobile.push(s)}
+q('#rt-play').onclick=()=>{still=false;if(t>=44)t=0;playing=!playing;last=performance.now();render()};q('#rt-still').onclick=()=>{still=true;playing=false;render()};q('#rt-restart').onclick=()=>{t=0;still=false;playing=true;last=performance.now();render()};q('#rt-time').oninput=e=>{t=+e.target.value;still=false;playing=false;render()};document.addEventListener('visibilitychange',()=>{last=performance.now()});function tick(now){if(playing){t=Math.min(44,t+Math.min(.1,(now-last)/1000));if(t>=44)playing=false;render()}last=now;requestAnimationFrame(tick)}render();new ResizeObserver(render).observe(root);requestAnimationFrame(tick);
+})();
+</script>
+</div>
+
+<div class="seam"></div>
+
+<div id="tech-triptych">
+<style>
+#tech-triptych{--paper:light-dark(#f4f2eb,#222824);--ink:light-dark(#253c35,#e1e9df);--soft:light-dark(#dadfd4,#3c4940);--faint:light-dark(#e8e9e0,#303a33);--green:light-dark(#527664,#a5c9a8);--body:light-dark(#fffefa,#dce2da);--line:light-dark(#a3b1a2,#687c6d);font-family:"PingFang SC","Microsoft YaHei",sans-serif;color:var(--ink)}
+#tech-triptych .art{border-radius:12px;box-shadow:0 8px 28px #253c350a;background:var(--paper);width:100%;display:block}#tech-triptych .controls{display:flex;gap:8px;flex-wrap:wrap;align-items:center;padding:14px 0}#tech-triptych button{font:inherit;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:20px;padding:8px 16px}#tech-triptych button[aria-pressed=true]{background:var(--ink);color:var(--paper)}#tech-triptych .status{color:var(--green);font-size:13px;min-height:24px;margin:4px 0 8px}#tech-triptych input{flex:1;min-width:100px;accent-color:var(--green)}#tech-triptych svg text{fill:var(--ink)}#tech-triptych svg .minor,#tech-triptych svg .val{fill:var(--green)}#tech-triptych .caption{font-size:17px;letter-spacing:1px}#tech-triptych .lab{font-size:12px}#tech-triptych .val{font-size:11px}#tech-triptych .tiny{font-size:10px;letter-spacing:1px}#tech-triptych .focus{display:none}@media(max-width:560px){#tech-triptych .art{display:none}#tech-triptych .focus{display:block;width:100%;background:var(--paper)}#tech-triptych .controls{gap:6px}#tech-triptych button{padding:8px 11px}}
+</style>
+<div class="controls"><button type="button" id="tt-play">播放</button><button type="button" id="tt-still" aria-pressed="true">三帧定格</button><button type="button" id="tt-restart">从头播放</button><input id="tt-time" type="range" min="0" max="44" step="0.05" value="0" aria-label="动画进度"></div>
+<div class="status" id="tt-status" aria-live="polite">三帧定格 · 感知与抬升 / 测距与伸刷 / 对准与自清洁</div>
+<svg class="art" id="tt-art" viewBox="0 0 1080 720" role="img" aria-label="低机位平视的三幅竖海报：超声波识别地毯并抬升拖布、结构光识别数据线并绕行；侧向测距贴墙、机械臂边刷伸入墙角盲区；红外对准回站、自动集尘与洗拖布烘干">
+<defs>
+<clipPath id="tt-p1"><rect width="360" height="720"/></clipPath><clipPath id="tt-p2"><rect x="360" width="360" height="720"/></clipPath><clipPath id="tt-p3"><rect x="720" width="360" height="720"/></clipPath>
+<clipPath id="tt-mapclip"><rect x="25" y="209" width="150" height="122" rx="6"/></clipPath>
+<clipPath id="tt-detclip"><circle cx="488" cy="585" r="70"/></clipPath>
+<pattern id="tt-rug" width="7" height="7" patternUnits="userSpaceOnUse"><path d="M0 0L7 7M7 0L0 7" stroke="var(--line)" stroke-width=".5" opacity=".35"/></pattern>
+<pattern id="tt-hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><path d="M0 0V6" stroke="var(--line)" stroke-width="1" opacity=".55"/></pattern>
+<pattern id="tt-zone" width="4" height="4" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)"><path d="M0 0V4" stroke="var(--green)" stroke-width="1.4"/></pattern>
+<linearGradient id="tt-cyl" x1="0" x2="1"><stop stop-color="var(--soft)"/><stop offset=".3" stop-color="var(--body)"/><stop offset=".62" stop-color="var(--body)"/><stop offset="1" stop-color="var(--soft)"/></linearGradient>
+<linearGradient id="tt-wall" x1="0" y1="0" x2="0" y2="1"><stop stop-color="var(--faint)" stop-opacity="0"/><stop offset=".55" stop-color="var(--faint)" stop-opacity=".9"/><stop offset="1" stop-color="var(--faint)"/></linearGradient>
+<linearGradient id="tt-wallL" x1="0" x2="1"><stop stop-color="var(--paper)"/><stop offset=".25" stop-color="var(--paper)" stop-opacity="0"/></linearGradient>
+<filter id="tt-shadow" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="2" stdDeviation="2.5" flood-opacity=".12"/></filter>
+</defs>
+
+<path d="M360 0V720M720 0V720" stroke="var(--line)" opacity=".24"/>
+<g font-size="12" letter-spacing="3"><text x="28" y="34">TECH / INSIDE</text><text x="388" y="34">TECH / INSIDE</text><text x="748" y="34">TECH / INSIDE</text></g>
+<g font-size="36" font-weight="500"><text x="28" y="91">先看见，再决定。</text><text x="388" y="91">伸出去，够到底。</text><text x="748" y="91">回来，自己打理。</text></g>
+<g font-size="15" class="minor"><text x="30" y="124">01   多模态感知 · 拖布抬升</text><text x="390" y="124">02   侧向测距 · 机械臂边刷</text><text x="750" y="124">03   红外对准 · 基站自清洁</text></g>
+
+<!-- 地面：视平线与透视地面 -->
+<g id="tt-floor"></g>
+<line x1="0" y1="170" x2="1080" y2="170" stroke="var(--line)" stroke-dasharray="2 6" opacity=".7"/>
+<text x="28" y="162" class="tiny minor">视平线 · 机位离地 18 cm*</text>
+
+<!-- 第二幅：墙角 -->
+<g clip-path="url(#tt-p2)">
+<rect x="380" y="150" width="270" height="275" fill="url(#tt-wall)"/>
+<path d="M650 425L691 520V150L650 160Z" fill="url(#tt-wall)"/>
+<rect x="380" y="150" width="270" height="275" fill="url(#tt-wallL)"/>
+<g fill="none" stroke="var(--line)" stroke-linecap="square"><path d="M400 425H650L691 520" stroke-width="3" opacity=".75"/><path d="M420 415H650L691 507" opacity=".5"/><path d="M650 425V190" opacity=".5"/></g>
+</g>
+
+<!-- 第一幅：地毯 -->
+<g id="tt-carpet"><path d="M153.6 591H290L305 648H150Z" fill="var(--soft)" opacity=".8"/><path d="M153.6 591H290L305 648H150Z" fill="url(#tt-rug)"/><path d="M150 648H305V655H150Z" fill="var(--line)" opacity=".45"/><path d="M290 591L305 648V655L290 597Z" fill="var(--line)" opacity=".3"/></g>
+<!-- 数据线 -->
+<g id="tt-cable" transform="translate(-16 0)" fill="none" stroke="var(--green)" stroke-width="2.4" stroke-linecap="round"><path d="M296 476C306 468 318 482 330 472S346 462 350 469"/><rect x="290" y="473" width="8" height="5" rx="1.5" fill="var(--green)" stroke="none"/><g transform="translate(350 469)"><rect x="0" y="-3" width="9" height="6" rx="2" fill="var(--green)" stroke="none"/><rect x="8" y="-2" width="6" height="4" rx="1.5" fill="var(--body)" stroke="var(--ink)" stroke-width=".7"/></g></g>
+
+<g id="tt-dust" fill="var(--green)"><circle cx="643" cy="423" r="2"/><circle cx="648" cy="421" r="1.4"/><circle cx="638" cy="421" r="1.3"/><circle cx="646" cy="427" r="1.7"/><circle cx="634" cy="425" r="1.1"/><circle cx="652" cy="425" r="1.2"/><circle cx="641" cy="428" r="1"/></g>
+
+<!-- 基站（后层：外壳与内部） -->
+<g id="tt-base-back">
+<rect x="910" y="432" width="154" height="116" rx="12" fill="var(--body)" opacity=".55"/>
+<rect x="1022" y="440" width="42" height="176" rx="8" fill="var(--body)" opacity=".55"/>
+<rect x="920" y="446" width="46" height="94" rx="6" fill="var(--paper)" stroke="var(--line)"/>
+<rect x="972" y="446" width="44" height="94" rx="6" fill="var(--paper)" stroke="var(--line)"/>
+<rect id="tt-clean" x="921" y="470" width="44" height="69" rx="5" fill="var(--green)" opacity=".28"/>
+<rect id="tt-dirty" x="973" y="520" width="42" height="19" rx="5" fill="var(--ink)" opacity=".28"/>
+<path d="M1030 456H1056L1058 596H1028Z" fill="var(--paper)" stroke="var(--line)" stroke-dasharray="3 2"/>
+<rect id="tt-bag" x="1030" y="580" width="27" height="15" fill="var(--ink)" opacity=".25"/>
+<path d="M935 540V560" stroke="var(--line)" stroke-width="2"/>
+<text x="943" y="462" text-anchor="middle" class="tiny">清水</text><text x="994" y="462" text-anchor="middle" class="tiny">污水</text><text x="1043" y="470" text-anchor="middle" class="tiny">尘袋</text>
+</g>
+<path d="M893 627L913 615H1064V627Z" fill="var(--soft)" stroke="var(--line)"/>
+<path d="M902 619H952" stroke="var(--line)" stroke-dasharray="2 2"/>
+
+<g id="tt-dynback"></g>
+<g id="tt-robots"></g>
+
+<!-- 基站（前层：剖切轮廓） -->
+<g id="tt-base-front" fill="none" stroke="var(--line)">
+<path d="M1022 548V616" />
+<rect x="910" y="432" width="154" height="116" rx="12" stroke-width="1.3"/>
+<path d="M1064 444V616" stroke-width="1.3"/>
+<rect x="910" y="432" width="154" height="8" fill="url(#tt-hatch)" stroke="none"/>
+<rect x="906" y="528" width="6" height="12" rx="1.5" fill="var(--ink)" stroke="none" opacity=".75"/>
+<rect x="1019" y="590" width="4" height="10" fill="var(--green)" stroke="none"/>
+</g>
+
+<g id="tt-dynfront"></g>
+
+<!-- 第一幅：路径小地图 -->
+<g id="tt-map"><rect x="24" y="188" width="152" height="144" rx="8" fill="var(--paper)" stroke="var(--line)"/><text x="34" y="203" class="tiny minor">路径规划 · 俯视</text><path d="M24 209H176" stroke="var(--line)" opacity=".5"/><g clip-path="url(#tt-mapclip)" id="tt-mapin"></g></g>
+
+<!-- 第二幅：详图 -->
+<g id="tt-detail">
+<text x="412" y="500" class="tiny minor">详图 A · 墙角俯视</text>
+<circle cx="488" cy="585" r="70" fill="var(--paper)" stroke="var(--line)"/>
+<g clip-path="url(#tt-detclip)"><rect x="400" y="516" width="130" height="20" fill="url(#tt-hatch)"/><rect x="512" y="516" width="18" height="150" fill="url(#tt-hatch)"/><path d="M400 536H512V670" fill="none" stroke="var(--ink)" stroke-width="1.5"/><g id="tt-detdyn"></g></g>
+<path d="M538 536L643 431" stroke="var(--line)" stroke-dasharray="3 3"/><circle cx="647" cy="426" r="5" fill="none" stroke="var(--green)"/>
+<text x="562" y="528" class="tiny minor">盲区</text><path d="M560 530L510 540" stroke="var(--line)" stroke-dasharray="2 2"/>
+</g>
+
+<g class="caption"><text id="tt-copy1" x="28" y="364">看清地面，再决定怎么走</text><text id="tt-copy2" x="412" y="206">够到圆形机身到不了的角</text><text id="tt-copy3" x="748" y="300">对准、集尘、洗布、烘干</text></g>
+<g id="tt-labels"></g>
+<g font-size="11" letter-spacing="2" class="minor"><text x="28" y="688">01 / SENSE</text><text x="388" y="688">02 / EXTEND</text><text x="748" y="688">03 / SERVICE</text><text x="1050" y="688" text-anchor="end">* 概念参数 · CONCEPT DEMO</text></g>
+</svg>
+<div id="tt-mobile"></div>
+<script>
+(()=>{const root=document.getElementById('tech-triptych'),q=s=>root.querySelector(s),ns='http://www.w3.org/2000/svg',art=q('#tt-art');let t=0,playing=false,still=true,last=0;
+const HZ=170,S=y=>(y-HZ)/455,clamp=v=>Math.max(0,Math.min(1,v)),sm=f=>f*f*(3-2*f),F=n=>+n.toFixed(2);
+const points=[[0,60,625],[2,95,625],[4,95,625],[7,225,625],[8,262,625],[9,272,580],[10.6,255,530],[11.6,255,530],[12.8,226,478],[14,262,438],[16,345,440],[17,420,441],[21,622,440],[25,622,440],[31,648,525],[35,800,620],[37,835,625],[38,835,625],[40,962,625],[44,962,625]];
+function pos(v){v=Math.max(0,Math.min(44,v));let i=points.findIndex(p=>p[0]>=v);if(i<=0)return{x:points[0][1],y:points[0][2]};let a=points[i-1],b=points[i],f=sm((v-a[0])/(b[0]-a[0]));return{x:a[1]+(b[1]-a[1])*f,y:a[2]+(b[2]-a[2])*f};}
+const dirv=(a,b)=>{let dx=b.x-a.x,dz=(b.y-a.y)*1.8,l=Math.hypot(dx,dz)||1;return{fx:dx/l,fz:dz/l}};
+function head(v){let a=pos(v-.08),b=pos(v+.08);if(Math.hypot(b.x-a.x,b.y-a.y)>.3)return dirv(a,b);const back=v>=21&&v<=25||v>=43;if(!back)for(let d=.2;d<5;d+=.2){let c=pos(v+d);if(Math.hypot(c.x-a.x,c.y-a.y)>1)return dirv(a,c)}for(let d=.2;d<8;d+=.2){let c=pos(v-d);if(Math.hypot(c.x-a.x,c.y-a.y)>1)return dirv(c,a)}return{fx:1,fz:0}}
+const mopLift=v=>v>=2&&v<9.9?clamp((v-2)/1.5)*(1-clamp((v-9)/.9)):0;
+const brushOut=v=>v>=21&&v<26?clamp((v-21)/1.2)*(1-clamp((v-24)/1)):0;
+const xrayAmt=v=>v>=19.5&&v<26.5?clamp((v-19.5)/.8)*(1-clamp((v-25.5)/1)):0;
+function raise(p){let s=S(p.y),c=clamp((p.x-140)/28)*clamp((298-p.x)/18)*clamp((p.y-588)/10),d=clamp((p.x-878)/40);return 7*s*c+10*d}
+/* 静态地面 */
+(function(){let g='';[.95,1.15,1.4,1.75,2.2,2.8,3.6].forEach((d,i)=>{let y=F(HZ+455/d);g+=`<line x1="0" x2="1080" y1="${y}" y2="${y}" stroke="var(--soft)" stroke-width="1.5" opacity="${F(.9-i*.1)}"/>`});[[180,'tt-p1'],[540,'tt-p2'],[900,'tt-p3']].forEach(([vx,c])=>{g+=`<g clip-path="url(#${c})" stroke="var(--soft)" opacity=".7">`;[-420,-200,0,200,420].forEach(o=>g+=`<line x1="${vx}" y1="${HZ}" x2="${vx+o*2.2}" y2="${HZ+550*1.0}"/>`);g+='</g>'});q('#tt-floor').innerHTML=g})();
+/* 机器人（低机位侧视） */
+function robot(v){let p=pos(v),s=S(p.y),R=58*s,H=34*s,h=head(v),ra=raise(p),x=p.x,yb=p.y-ra-4*s,kb=.22*s,kt=.09*s,ml=mopLift(v),br=brushOut(v),xr=xrayAmt(v),bo=1-.6*xr,fx=h.fx,afar=Math.max(0,-h.fz);
+let o=`<ellipse cx="${F(x)}" cy="${F(p.y)}" rx="${F(R*1.06)}" ry="${F(R*kb*1.15+1)}" fill="var(--ink)" opacity=".1"/>`;
+let my=p.y-ra-3*s-ml*9*s;o+=`<rect x="${F(x-fx*R*.25-R*.56)}" y="${F(my-2*s)}" width="${F(R*1.12)}" height="${F(3.2*s)}" rx="${F(1.5*s)}" fill="var(--green)" opacity=".6"/>`;
+if(Math.abs(fx)>.3)o+=`<ellipse cx="${F(x-fx*R*.1)}" cy="${F(yb-1*s)}" rx="${F(9*s)}" ry="${F(6*s)}" fill="var(--ink)" opacity=".6"/>`;
+o+=`<g opacity="${F(bo)}" filter="url(#tt-shadow)"><path d="M${F(x-R)} ${F(yb-H)}V${F(yb)}A${F(R)} ${F(R*kb)} 0 0 0 ${F(x+R)} ${F(yb)}V${F(yb-H)}Z" fill="url(#tt-cyl)" stroke="var(--line)"/></g>`;
+o+=`<g opacity="${F(bo)}"><path d="M${F(x-R)} ${F(yb-H*.36)}A${F(R)} ${F(R*kb)} 0 0 0 ${F(x+R)} ${F(yb-H*.36)}" fill="none" stroke="var(--soft)" stroke-width="${F(1.6*s)}"/><ellipse cx="${F(x)}" cy="${F(yb-H)}" rx="${F(R)}" ry="${F(Math.max(1,R*kt))}" fill="var(--body)" stroke="var(--line)"/>`;
+let ww=R*(.42-.24*Math.abs(fx)),wx=x+fx*R*.7;o+=`<rect x="${F(wx-ww/2)}" y="${F(yb-H*.8)}" width="${F(ww)}" height="${F(H*.32)}" rx="${F(2*s)}" fill="var(--ink)" opacity="${F(.72*(1-afar*.85))}"/>`;
+let tw=15*s,th=9*s;o+=`<path d="M${F(x-tw)} ${F(yb-H-th)}V${F(yb-H)}H${F(x+tw)}V${F(yb-H-th)}Z" fill="url(#tt-cyl)" stroke="var(--line)"/><ellipse cx="${F(x)}" cy="${F(yb-H-th)}" rx="${F(tw)}" ry="${F(Math.max(.8,tw*kt*1.2))}" fill="var(--body)" stroke="var(--line)"/><circle cx="${F(x+fx*tw*.55)}" cy="${F(yb-H-th*.5)}" r="${F(1.8*s+.4)}" fill="var(--green)"/></g>`;
+if(xr>0)o+=`<g fill="none" stroke="var(--green)" stroke-dasharray="2 2" opacity="${F(xr)}"><path d="M${F(x-R)} ${F(yb-H)}V${F(yb)}A${F(R)} ${F(R*kb)} 0 0 0 ${F(x+R)} ${F(yb)}V${F(yb-H)}"/><ellipse cx="${F(x)}" cy="${F(yb)}" rx="${F(R)}" ry="${F(R*kb)}" opacity=".6"/></g>`;
+if(br>0){let a0x=x+R*.62,a0y=yb-1*s,tx=a0x+(647-a0x)*br,ty=a0y+(426-a0y)*br;o+=`<path d="M${F(a0x)} ${F(a0y)}L${F(tx)} ${F(ty)}" stroke="var(--ink)" stroke-width="${F(3.4*s)}" stroke-linecap="round" opacity=".8"/><ellipse cx="${F(tx)}" cy="${F(ty)}" rx="${F(10*s)}" ry="${F(3.4*s)}" fill="none" stroke="var(--green)" stroke-width="1.2"/>`;for(let k=0;k<4;k++){let a=v*14+k*Math.PI/2;o+=`<line x1="${F(tx)}" y1="${F(ty)}" x2="${F(tx+Math.cos(a)*10*s)}" y2="${F(ty+Math.sin(a)*3.4*s)}" stroke="var(--green)" stroke-width="1.1"/>`}}
+else{let rx_=x+fx*R*.8,ry_=p.y-ra-2*s;if(afar<.7)o+=`<ellipse cx="${F(rx_)}" cy="${F(ry_)}" rx="${F(9*s)}" ry="${F(2.6*s)}" fill="none" stroke="var(--green)" opacity=".55"/>`}
+return{svg:o,p,s,R,H,yb,ra,fx,ml,my}}
+/* 标注 */
+const lab=(n,x,y,title,val,tx,ty,op)=>op<=0?'':`<g opacity="${F(op)}">${tx!=null?`<path d="M${x+(title.length*12+28)} ${y-4}L${F(tx)} ${F(ty)}" fill="none" stroke="var(--line)" stroke-dasharray="2 3"/><circle cx="${F(tx)}" cy="${F(ty)}" r="2.2" fill="var(--green)"/>`:''}<circle cx="${x+7}" cy="${y-4}" r="7.5" fill="var(--green)"/><text x="${x+7}" y="${y-0.5}" text-anchor="middle" font-size="10" style="fill:var(--paper)">${n}</text><text x="${x+20}" y="${y}" class="lab">${title}</text><text x="${x+20}" y="${y+15}" class="val">${val}</text></g>`;
+const mk=(n,x,y,op)=>op<=0?'':`<g opacity="${F(op)}"><circle cx="${F(x)}" cy="${F(y)}" r="7" fill="var(--green)" stroke="var(--paper)" stroke-width="1.5"/><text x="${F(x)}" y="${F(y+3.5)}" text-anchor="middle" font-size="9.5" style="fill:var(--paper)">${n}</text></g>`;
+const ap=(a)=>still?1:clamp((t-a)/.6);
+const win=(a,b,fi=.5,fo=.6)=>clamp((t-a)/fi)*(1-clamp((t-b)/fo));
+const P1=(vx,vy)=>({u:F(34+(((vx-180)/S(vy))+140)*.18),v:F(318-((455/(vy-HZ))-.9)*85)});
+/* 小地图 */
+function minimap(){let g='';const c=[[150,655],[305,655],[290,597],[153.6,597]].map(([a,b])=>P1(a,b));g+=`<path d="M${c.map(p=>p.u+' '+p.v).join('L')}Z" fill="var(--soft)"/>`;let cb=P1(280,476),ce=P1(336,469);g+=`<path d="M${cb.u} ${cb.v}Q${F((+cb.u+ +ce.u)/2)} ${F(+cb.v-5)} ${ce.u} ${ce.v}" fill="none" stroke="var(--green)" stroke-width="2"/>`;let wl=P1(400,425),wr=P1(650,425);g+=`<path d="M${wl.u} ${wl.v}H180" stroke="var(--line)" stroke-width="3"/>`;let pts=[];for(let v=0;v<=17.01;v+=.25){let p=pos(v),m=P1(p.x,p.y);pts.push(m.u+' '+m.v)}g+=`<path d="M${pts.join('L')}" fill="none" stroke="var(--green)" stroke-dasharray="3 3" opacity=".75"/>`;let cur=still?17:Math.min(t,17),dn=[];for(let v=0;v<=cur;v+=.25){let p=pos(v),m=P1(p.x,p.y);dn.push(m.u+' '+m.v)}if(dn.length>1)g+=`<path d="M${dn.join('L')}" fill="none" stroke="var(--green)" stroke-width="2.4"/>`;if(!still&&t<=17.5){let p=pos(t),m=P1(p.x,p.y);g+=`<circle cx="${m.u}" cy="${m.v}" r="4.5" fill="var(--body)" stroke="var(--ink)" stroke-width="1.4"/>`}g+=`<text x="${F(+cb.u-2)}" y="${F(+cb.v+14)}" class="tiny">线材</text><text x="${F(+c[0].u-2)}" y="${F(+c[0].v+13)}" class="tiny">地毯</text>`;q('#tt-mapin').innerHTML=g}
+/* 详图 A */
+function detail(){const Px=466,Py=582,Rr=46,ext=still?1:brushOut(t),cl=still?.55:clamp((t-22.2)/1.8);let g=`<path d="M${Px} ${Py-Rr}L512 ${Py-Rr}L512 ${Py}A${Rr} ${Rr} 0 0 0 ${Px} ${Py-Rr}Z" fill="url(#tt-zone)" opacity="${F(.85*(1-cl)+.08)}"/><path d="M${Px} ${Py-Rr}L512 ${Py-Rr}L512 ${Py}" fill="none" stroke="var(--green)" stroke-width="1" stroke-dasharray="2 2" opacity="${F(1-cl)}"/>`;g+=`<circle cx="${Px}" cy="${Py}" r="${Rr}" fill="var(--body)" stroke="var(--line)" filter="url(#tt-shadow)"/><circle cx="${Px-4}" cy="${Py-4}" r="11" fill="var(--soft)" stroke="var(--line)"/><path d="M${Px+30} ${Py-14}V${Py+6}" stroke="var(--green)" stroke-width="2" stroke-linecap="round"/>`;let a0x=Px+Rr*.62,a0y=Py-Rr*.62,tx=a0x+(504-a0x)*ext,ty=a0y+(544-a0y)*ext;g+=`<path d="M${F(a0x-6)} ${F(a0y+6)}L${F(tx)} ${F(ty)}" stroke="var(--ink)" stroke-width="4" stroke-linecap="round"/><circle cx="${F(tx)}" cy="${F(ty)}" r="9" fill="none" stroke="var(--green)" stroke-width="1.3"/>`;let ang=(still?0:t)*14;for(let k=0;k<3;k++){let a=ang+k*2.094;g+=`<line x1="${F(tx)}" y1="${F(ty)}" x2="${F(tx+Math.cos(a)*9)}" y2="${F(ty+Math.sin(a)*9)}" stroke="var(--green)" stroke-width="1.2"/>`}g+=`<path d="M${F(a0x+6)} ${F(a0y+8)}L${F(tx+10)} ${F(ty+10)}" stroke="var(--line)" opacity="${F(ext)}"/><text x="${F(tx+12)}" y="${F(ty+24)}" class="tiny minor" opacity="${F(ext)}">+35 mm*</text>`;if(!still&&cl>=1&&t<26)g+=`<text x="428" y="645" class="tiny minor">已覆盖</text>`;q('#tt-detdyn').innerHTML=g}
+function render(){let rg=q('#tt-robots'),back='',front='',L='';
+const vs=still?[6,23,41]:[t];let R0=null;vs.forEach(v=>{let r=robot(v);if(!R0)R0=r;back+=''});
+/* 轨迹（仅动画） */
+if(!still)for(let v=Math.max(0,t-2.6);v<t-.12;v+=.12){let a=pos(v),b=pos(v+.12);if(Math.hypot(a.x-b.x,a.y-b.y)<.15)continue;back+=`<line x1="${F(a.x)}" y1="${F(a.y)}" x2="${F(b.x)}" y2="${F(b.y)}" stroke="var(--green)" stroke-width="${F(1+2.5*S(a.y))}" stroke-linecap="round" opacity="${F(.7*(1-(t-v)/2.6))}"/>`}
+/* P1 规划绕行虚线 */
+let dp=still?1:win(11,17.5,.6,.8);if(dp>0){let pts=[];for(let v=11.6;v<=17;v+=.2){let p=pos(v);pts.push(F(p.x)+' '+F(p.y))}back+=`<path d="M${pts.join('L')}" fill="none" stroke="var(--green)" stroke-width="1.6" stroke-dasharray="5 4" opacity="${F(dp*.8)}"/>`}
+/* P1 结构光扫描 */
+let bm=still?0:win(9.9,11.9,.4,.4);if(bm>0){let r=robot(t),ox=r.p.x+r.fx*r.R*.7,oy=r.yb-r.H*.64,sc=Math.sin(t*9)*.5+.5;back+=`<path d="M${F(ox)} ${F(oy)}L270 482L344 466Z" fill="var(--green)" opacity="${F(.14*bm)}"/><path d="M${F(ox)} ${F(oy)}L${F(272+sc*68)} ${F(481-sc*15)}" stroke="var(--green)" stroke-width="1.4" opacity="${F(bm)}"/>`}
+let bx=still?1:clamp((t-10.6)/.4)*(t<17?1:.6);if(bx>0)back+=`<g fill="none" stroke="var(--ink)" stroke-width="1.2" opacity="${F(bx)}"><path d="M270 462V456H278M338 456H346V462M346 482V488H338M278 488H270V482"/></g><text x="308" y="452" text-anchor="middle" class="tiny" opacity="${F(bx)}">数据线 · 已识别</text>`;
+q('#tt-cable').style.strokeWidth=(!still&&t>=10.6&&t<11.6)?'3.6':'2.4';
+/* 机器人 */
+let rs=vs.map(v=>robot(v));rg.innerHTML=rs.map(r=>r.svg).join('');
+/* P1 超声波 */
+let r1=still?rs[0]:rs[0];let us=still?1:win(1,4.6,.4,.5);if(us>0&&r1.p.x<330&&r1.p.y>560){let ux=r1.p.x+r1.R*.78,uy=r1.yb;for(let k=0;k<3;k++){let ph=still?k/3:((t*1.6+k/3)%1);front+=`<path d="M${F(ux-6-ph*10)} ${F(uy+2+ph*9)}Q${F(ux)} ${F(uy+6+ph*12)} ${F(ux+6+ph*10)} ${F(uy+2+ph*9)}" fill="none" stroke="var(--green)" stroke-width="1.3" opacity="${F(us*(1-ph))}"/>`}}
+/* P1 抬升尺寸 */
+let ld=still?1:clamp((mopLift(t)-.4)/.4);if(ld>0&&r1.p.x<330&&r1.p.y>560){let dx=r1.p.x-r1.fx*r1.R*.25-r1.R*.56-9,fy=r1.p.y-raise(r1.p)-2,my=r1.my-2*r1.s;front+=`<g stroke="var(--ink)" stroke-width="1" opacity="${F(ld)}"><path d="M${F(dx-4)} ${F(fy)}H${F(dx+4)}M${F(dx-4)} ${F(my)}H${F(dx+4)}M${F(dx)} ${F(fy+10)}V${F(fy)}M${F(dx)} ${F(my-10)}V${F(my)}"/><path d="M${F(dx-3)} ${F(fy+4)}L${F(dx)} ${F(fy)}L${F(dx+3)} ${F(fy+4)}M${F(dx-3)} ${F(my-4)}L${F(dx)} ${F(my)}L${F(dx+3)} ${F(my-4)}" fill="none"/></g>`}
+/* P2 ToF 与线激光 */
+let pr=still?rs[1]:rs[0],tof=still?.7:win(17,21.2,.5,.6);if(tof>0&&pr.p.x>380&&pr.p.x<700&&pr.p.y<470){let tx=pr.p.x-pr.R*.2;for(let k=0;k<3;k++)front+=`<path d="M${F(tx+k*7-7)} ${F(pr.yb-pr.H-12)}V${F(pr.yb-pr.H-30-k*3)}" stroke="var(--green)" stroke-width="1.2" stroke-dasharray="2 3" opacity="${F(tof)}"/>`;front+=`<path d="M${F(tx-12)} ${F(pr.yb-pr.H-34)}Q${F(tx)} ${F(pr.yb-pr.H-42)} ${F(tx+12)} ${F(pr.yb-pr.H-34)}" fill="none" stroke="var(--green)" opacity="${F(tof)}"/>`}
+let lz=still?.8:win(19.5,22,.4,.5);if(lz>0&&pr.p.x>380&&pr.p.x<700&&pr.p.y<470){let ox=pr.p.x+pr.fx*pr.R*.7,oy=pr.yb-pr.H*.64;front+=`<path d="M${F(ox)} ${F(oy)}L656 404L656 438Z" fill="var(--green)" opacity="${F(.16*lz)}"/><path d="M656 400L657 440" stroke="var(--green)" stroke-width="2.4" opacity="${F(lz)}"/>`}
+q('#tt-dust').style.opacity=still?'.6':.9*(1-clamp((t-22.2)/1.8));
+/* P3 红外对准 */
+let ir=still?.7:win(34,38.6,.6,.6);if(ir>0)for(let k=0;k<3;k++){let ph=still?k/3:((t*1.2+k/3)%1),r=20+ph*80;front+=`<path d="M${F(906-r*.9)} ${F(534-r*.35)}Q${F(906-r*1.05)} ${F(534)} ${F(906-r*.9)} ${F(534+r*.35)}" fill="none" stroke="var(--green)" stroke-width="1.3" opacity="${F(ir*(1-ph))}"/>`};if(ir>0)front+=`<path d="M906 534H${still?820:F(Math.min(906,pos(t).x+40))}" stroke="var(--green)" stroke-dasharray="1 4" opacity="${F(ir)}"/>`;
+/* P3 触点、集尘、水路 */
+let ch=still?1:clamp((t-39.6)/.3);if(ch>0)front+=`<g stroke="var(--green)" stroke-width="1.2" opacity="${F(ch*(still?1:.6+.4*Math.sin(t*12)))}"><path d="M1016 591l-5 -4M1016 599l-5 4M1014 595h-6"/></g>`;
+let fl=still?1:win(40,42.2,.3,.5);if(fl>0){front+=`<path d="M966 611H1043V596" fill="none" stroke="var(--green)" stroke-width="2" stroke-dasharray="3 4" stroke-dashoffset="${F(still?0:-t*30)}" opacity="${F(fl)}"/>`;for(let k=0;k<5;k++){let ph=still?k/5:((t*.9+k/5)%1),d=ph*92,px=d<77?966+d:1043,py=d<77?611:611-(d-77);front+=`<circle cx="${F(px)}" cy="${F(py)}" r="1.6" fill="var(--ink)" opacity="${F(fl*.7)}"/>`}}
+let bf=still?.6:.15+.55*clamp((t-40)/2.2);q('#tt-bag').setAttribute('y',F(595-38*bf));q('#tt-bag').setAttribute('height',F(38*bf));
+let wf=still?.5:clamp((t-42)/2);q('#tt-clean').setAttribute('y',F(470+34*wf));q('#tt-clean').setAttribute('height',F(69-34*wf));q('#tt-dirty').setAttribute('y',F(520-34*wf));q('#tt-dirty').setAttribute('height',F(19+34*wf));
+let wb=still?1:win(42,44.5,.3,.3);if(wb>0){for(let k=0;k<4;k++){let ph=still?k/4:((t*1.4+k/4)%1);front+=`<circle cx="${F(912+k*9)}" cy="${F(612-ph*8)}" r="${F(1.4+ph)}" fill="none" stroke="var(--green)" opacity="${F(wb*(1-ph))}"/>`}for(let k=0;k<3;k++){let o=still?0:t*20;front+=`<path d="M${880+k*7} 612q3 -4 0 -8t0 -8" fill="none" stroke="var(--line)" stroke-dasharray="3 2" stroke-dashoffset="${F(o)}" opacity="${F(wb*.8)}"/>`}}
+let bat=still?1:clamp((t-40)/.4);if(bat>0){let pct=still?68:Math.round(23+clamp((t-40)/4)*45);front+=`<g opacity="${F(bat)}"><rect x="918" y="408" width="34" height="13" rx="3" fill="none" stroke="var(--green)" stroke-width="1.2"/><rect x="952" y="412" width="3" height="5" fill="var(--green)"/><rect x="920.5" y="410.5" width="${F(29*pct/100)}" height="8" rx="1.5" fill="var(--green)"/><text x="962" y="419" class="tiny minor">充电 ${pct}%</text></g>`}
+q('#tt-dynback').innerHTML=back;q('#tt-dynfront').innerHTML=front;
+/* 标注 */
+L+=lab('1',28,412,'超声波 · 地毯识别','识别毯边 → 抬升拖布',null,null,ap(1.2));
+L+=lab('2',28,462,'拖布抬升','抬升 10 mm*',null,null,ap(3));
+L+=lab('3',28,512,'结构光 + AI 视觉','识别线材 Ø ≥ 3 mm*',null,null,ap(10.4));
+L+=lab('4',412,252,'侧向 ToF 测距','贴墙距离 5 mm*',null,null,ap(17.4));
+L+=lab('5',412,302,'前向线激光','识别 90° 直角',null,null,ap(19.8));
+L+=lab('6',412,352,'机械臂边刷','外伸 35 mm* · 覆盖盲区',null,null,ap(21.2));
+L+=lab('7',748,352,'红外对准','中线偏差 ≤ 5 mm*',null,null,ap(34.4));
+L+=lab('8',748,402,'自动集尘','尘袋约 60 天*',null,null,ap(40.2));
+L+=lab('9',748,452,'洗拖布 · 热风烘干','烘干 45 ℃*',null,null,ap(42.2));
+L+=mk('1',138,656,ap(1.2))+mk('3',260,466,ap(10.4))+mk('5',670,412,ap(19.8))+mk('6',426,530,ap(21.2))+mk('7',893,548,ap(34.4))+mk('8',1043,643,ap(40.2))+mk('9',918,643,ap(42.2));
+if(ld>0&&r1.p.x<330&&r1.p.y>560){let dx=r1.p.x-r1.fx*r1.R*.25-r1.R*.56-9;L+=mk('2',dx-13,r1.my-8,ld*ap(3))}
+if(tof>0&&pr.p.x>380&&pr.p.x<700&&pr.p.y<470)L+=mk('4',pr.p.x-pr.R*.2-24,pr.yb-pr.H-30,tof*ap(17.4));
+q('#tt-labels').innerHTML=L;minimap();detail();
+[[1,11.6],[2,25],[3,42]].forEach(([i,v])=>q('#tt-copy'+i).style.opacity=still?1:clamp((t-v)/1.4));
+q('#tt-time').value=t;q('#tt-play').textContent=playing?'暂停':'播放';q('#tt-still').setAttribute('aria-pressed',still);let s=still?'三帧定格 · 感知与抬升 / 测距与伸刷 / 对准与自清洁':phase(t);if(q('#tt-status').textContent!==s)q('#tt-status').textContent=s;
+if(root.clientWidth<561)mobile.forEach((m,i)=>{m.innerHTML=art.innerHTML.replace(/id="([^"]+)"/g,(_,id)=>`id="${id}-m${i}"`).replace(/url\(#([^)]*)\)/g,(_,id)=>`url(#${id}-m${i})`);m.style.display=still||i===(t<16.5?0:t<31?1:2)?'block':'none'})}
+function phase(v){if(v<2)return'超声波扫描地面材质 · 拖布贴地';if(v<4)return'识别毯边 · 拖布抬升 10 mm*';if(v<9)return'越过地毯 · 拖布保持抬升';if(v<9.9)return'离开地毯 · 拖布落回硬地';if(v<10.6)return'结构光扫描前方 · 检测到细长轮廓';if(v<11.6)return'AI 视觉确认：数据线 · 生成绕行路径';if(v<16)return'按规划路径绕行 · 保持安全距离';if(v<17)return'绕行完成 · 驶向墙边';if(v<19.5)return'侧向 ToF 测距 · 贴墙 5 mm* 前进';if(v<21)return'前向线激光识别直角 · 减速';if(v<22.2)return'机械臂边刷外伸 35 mm* · 进入盲区';if(v<24)return'边刷旋转 · 清扫圆形机身盲区';if(v<25)return'盲区清扫完成 · 边刷收回';if(v<31)return'沿侧墙返回 · 边刷已收回';if(v<34)return'规划回充路径';if(v<37)return'接收基站红外信号';if(v<38)return'红外中线校正 · 正向对准';if(v<40)return'缓慢入站 · 触点接合';if(v<42)return'开始充电 · 自动集尘';return'洗拖布 · 热风烘干';}
+let mobile=[];for(let i=0;i<3;i++){let s=document.createElementNS(ns,'svg');s.setAttribute('viewBox',`${i*360} 0 360 720`);s.setAttribute('class','focus');s.setAttribute('role','img');s.setAttribute('aria-label',['感知与拖布抬升','测距与机械臂边刷','对准回站与自清洁'][i]);q('#tt-mobile').append(s);mobile.push(s)}
+q('#tt-play').onclick=()=>{still=false;if(t>=44)t=0;playing=!playing;last=performance.now();render()};q('#tt-still').onclick=()=>{still=true;playing=false;render()};q('#tt-restart').onclick=()=>{t=0;still=false;playing=true;last=performance.now();render()};q('#tt-time').oninput=e=>{t=+e.target.value;still=false;playing=false;render()};document.addEventListener('visibilitychange',()=>{last=performance.now()});function tick(now){if(playing){t=Math.min(44,t+Math.min(.1,(now-last)/1000));if(t>=44)playing=false;render()}last=now;requestAnimationFrame(tick)}render();new ResizeObserver(render).observe(root);requestAnimationFrame(tick);
+})();
+</script>
+</div>
+
+</div>
+<p class="note">三段共用 44 秒时间轴：品牌横幅的吸力在上毯、清扫墙角、集尘时增强；介绍组与技术组编号 ①–⑨ 一一对应。隅见为虚构品牌，* 为概念参数，非实测数据。</p>
+</main>
+<script>
+(()=>{const $=s=>document.querySelector(s),groups=[['#bb-time','#bb-still'],['#rt-time','#rt-still'],['#tt-time','#tt-still']];let t=0,playing=false,still=true,last=0;
+const st=(s)=>{const el=$(s);return el?el.textContent.trim():''};
+function push(){groups.forEach(([r,s])=>{if(still){$(s).click()}else{const el=$(r);el.value=t;el.dispatchEvent(new Event('input'))}});
+$('#lp-time').value=t;$('#lp-play').textContent=playing?'暂停':'播放';$('#lp-still').setAttribute('aria-pressed',still);$('#lp-clock').textContent=still?'定格':t.toFixed(1)+' s';
+$('#lp-s1').textContent=still?'三帧定格':st('#rt-status');$('#lp-s2').textContent=still?'三帧定格':st('#tt-status')}
+const go=v=>{t=v;still=false;playing=false;push()};
+$('#lp-play').onclick=()=>{still=false;if(t>=44)t=0;playing=!playing;last=performance.now();push()};
+$('#lp-still').onclick=()=>{still=true;playing=false;push()};
+$('#lp-restart').onclick=()=>{t=0;still=false;playing=true;last=performance.now();push()};
+$('#lp-time').oninput=e=>go(+e.target.value);
+document.querySelectorAll('.chapters button').forEach(b=>b.onclick=()=>go(+b.dataset.t));
+document.addEventListener('bb-jump',e=>go(e.detail));
+document.addEventListener('visibilitychange',()=>{last=performance.now()});
+function tick(now){if(playing){t=Math.min(44,t+Math.min(.1,(now-last)/1000));if(t>=44)playing=false;push()}last=now;requestAnimationFrame(tick)}requestAnimationFrame(tick);push();
+})();
+</script>
+</body></html>
